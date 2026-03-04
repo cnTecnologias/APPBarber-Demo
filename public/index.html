@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Reservas - Barber Shop</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fondo: '#111827',     /* Azul muy oscuro */
+                        panel: '#1F2937',     /* Azul grisáceo para contenedores */
+                        acento: '#FB7185',    /* Rosa salmón / Coral */
+                        textoGris: '#9CA3AF'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-fondo text-white font-sans min-h-screen flex flex-col antialiased">
+    
+    <header class="w-full bg-panel border-b border-acento/30 shadow-lg py-5 px-6 flex justify-center items-center">
+        <h1 class="text-2xl font-semibold tracking-widest uppercase">
+            Barber <span class="text-acento font-bold">Shop</span>
+        </h1>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center p-6 w-full max-w-md mx-auto">
+        
+        <div class="bg-panel w-full rounded-2xl shadow-2xl p-6 border border-gray-700">
+            
+            <div class="text-center mb-6">
+                <h2 class="text-xl font-medium text-white mb-1">Elegí tu fecha</h2>
+                <p class="text-sm text-textoGris">Seleccioná un día para ver disponibilidad</p>
+            </div>
+
+            <div class="mb-8">
+                <input 
+                    type="date" 
+                    id="fecha-turno" 
+                    class="w-full bg-fondo border border-gray-600 text-white rounded-lg p-3 focus:outline-none focus:border-acento focus:ring-1 focus:ring-acento transition-colors cursor-pointer"
+                >
+            </div>
+
+            <div>
+                <h3 class="text-sm font-medium text-textoGris mb-3 uppercase tracking-wider">Horarios disponibles</h3>
+                <div id="grid-horarios" class="grid grid-cols-3 gap-3">
+                    <div class="col-span-3 text-center text-textoGris text-sm py-4 border border-dashed border-gray-600 rounded-lg">
+                        Esperando selección de fecha...
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+<div id="modal-reserva" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+    <div class="bg-panel border border-acento/30 p-8 rounded-2xl shadow-2xl max-w-sm w-full transform transition-all">
+        <h2 class="text-xl font-bold text-white mb-2">Confirmar Turno</h2>
+        <p id="info-reserva" class="text-acento text-sm mb-6 font-medium"></p>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-xs text-textoGris mb-1 uppercase">Nombre Completo</label>
+                <input type="text" id="input-nombre" class="w-full bg-fondo border border-gray-600 rounded-lg p-3 text-white focus:border-acento outline-none">
+            </div>
+            <div>
+                <label class="block text-xs text-textoGris mb-1 uppercase">WhatsApp</label>
+                <input type="tel" id="input-telefono" class="w-full bg-fondo border border-gray-600 rounded-lg p-3 text-white focus:border-acento outline-none" placeholder="Ej: 1122334455">
+            </div>
+        </div>
+
+        <div class="flex gap-3 mt-8">
+            <button onclick="cerrarModal()" class="flex-1 py-3 rounded-lg text-textoGris hover:bg-white/5 transition-colors">Cancelar</button>
+            <button id="btn-confirmar" class="flex-1 bg-acento text-fondo font-bold py-3 rounded-lg hover:brightness-110 transition-all">RESERVAR</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="hidden fixed bottom-10 left-1/2 -translate-x-1/2 bg-green-600 text-white font-bold px-10 py-5 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-50 border border-green-400/30 transition-all duration-500">
+    <div class="flex items-center gap-3">
+        <span class="text-2xl">✓</span>
+        <span>¡TURNO RESERVADO CON ÉXITO!</span>
+    </div>
+</div>
+
+    </main>
+
+    <footer class="w-full text-center py-6 mt-auto">
+        <p class="text-xs text-textoGris uppercase tracking-widest">
+            Sistema de Gestión Activo
+        </p>
+    </footer>
+
+<script src="app.js"></script>
+    </body>
+</html>
