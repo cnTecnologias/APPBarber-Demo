@@ -75,8 +75,13 @@
         </div>
 
         <div class="flex gap-3 mt-8">
-            <button onclick="cerrarModal()" class="flex-1 py-3 rounded-lg text-textoGris hover:bg-white/5 transition-colors">Cancelar</button>
-            <button id="btn-confirmar" class="flex-1 bg-acento text-fondo font-bold py-3 rounded-lg hover:brightness-110 transition-all">RESERVAR</button>
+            <button type="button" onclick="cerrarModal()" class="flex-1 py-3 rounded-lg text-textoGris hover:bg-white/5 transition-colors">Cancelar</button>
+          <button type="button" 
+        id="btn-confirmar" 
+        onclick="confirmarReserva()" 
+        class="flex-1 bg-acento text-fondo font-bold py-3 rounded-lg hover:brightness-110 transition-all">
+    RESERVAR
+</button>
         </div>
     </div>
 </div>

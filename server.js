@@ -50,6 +50,26 @@ app.post('/api/turnos', (req, res) => {
     });
 });
 
+// GET: Ver todos los turnos (Solo para el Admin)
+app.get('/api/admin/turnos', (req, res) => {
+    const query = `SELECT * FROM turnos ORDER BY fecha ASC, hora ASC`;
+    db.all(query, [], (err, rows) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(rows);
+    });
+});
+
+// DELETE: Eliminar un turno por ID (solo admin) 
+app.delete('/api/admin/turnos/:id', (req, res) => {
+    const { id } = req.params;
+    const query = `DELETE FROM turnos WHERE id = ?`;
+
+    db.run(query, [id], function(err) {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ mensaje: 'Turno eliminado correctamente' });
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Servidor de Barbería corriendo en http://localhost:${PORT}`);
 });
